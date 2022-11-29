@@ -1,4 +1,6 @@
 import { connection } from "./connection"
+import users from "./users.json"
+import products from "./products.json"
 
 const printError = (error: any) => { console.log(error.sqlMessage || error.message) }
 
@@ -33,7 +35,19 @@ const createTables = () => connection
    .then(() => { console.log("Tabelas criadas") })
    .catch(printError)
 
+const insertUsers = () => connection("labecommerce_users")
+    .insert(users)
+    .then(() => { console.log("Usuários criados") })
+    .catch(printError)
+
+const insertProducts = () => connection("labecommerce_products")
+   .insert(products)
+   .then(() => { console.log("Produtos adicionados") })
+   .catch(printError)
+
 const closeConnection = () => { connection.destroy() }
 
 createTables()
-   .finally(closeConnection)
+    .then(insertUsers)
+    .then(insertProducts)
+    .finally(closeConnection)
