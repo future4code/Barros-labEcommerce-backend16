@@ -11,3 +11,14 @@ Content-Type: application/json
 
 GET http://localhost:3003/users
 Content-Type: application/json
+
+###
+
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "CD 5 Seconds of Summer - 5SOS5",
+    "price": 35.90,
+    "image_url": "https://m.media-amazon.com/images/I/81Mhruo-6VL._AC_SX679_.jpg"
+}
