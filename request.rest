@@ -22,3 +22,8 @@ Content-Type: application/json
     "price": 35.90,
     "image_url": "https://m.media-amazon.com/images/I/81Mhruo-6VL._AC_SX679_.jpg"
 }
+
+###
+
+GET http://localhost:3003/products
+Content-Type: application/json
