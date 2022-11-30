@@ -15,8 +15,6 @@ export const getAllProducts = async (req: Request, res: Response): Promise<void>
             order = "ASC"
         }
 
-
-
         const result = await connection("labecommerce_products")
         .where("name", "like", `%${search}%`)
         .orderBy("name", order)

@@ -20,7 +20,7 @@ export const getPurchasesByUser = async (req: Request, res: Response): Promise<v
             throw new Error("ID de usuário não encontrado.");
         }
 
-        const result = await connection.select("labecommerce_users.name as user_name", "labecommerce_products.name as product_name", "quantity", "total_price")
+        const result = await connection.select("labecommerce_users.name as userName", "labecommerce_products.name as productName", "quantity", "total_price as totalPrice")
         .from("labecommerce_purchases")
         .join("labecommerce_users", 'user_id', '=', 'labecommerce_users.id')
         .join('labecommerce_products', 'product_id', '=', 'labecommerce_products.id')
