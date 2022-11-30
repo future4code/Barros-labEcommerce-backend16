@@ -8,7 +8,7 @@ export const getAllUsers = async (req: Request, res: Response): Promise<void> =>
         const users: user[] = await connection("labecommerce_users")
 
         for (let i = 0; i < users.length; i++) {
-            const purchases = await connection.select("labecommerce_products.name as productName", "quantity", "total_price as totalPrice")
+            const purchases = await connection.select("labecommerce_products.name as productName", "labecommerce_products.id as productId", "quantity", "total_price as totalPrice")
             .from("labecommerce_purchases")
             .join('labecommerce_products', 'product_id', '=', 'labecommerce_products.id')
             .where('user_id', users[i].id)

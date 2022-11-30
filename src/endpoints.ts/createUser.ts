@@ -10,15 +10,15 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         if (!name) {
             errorCode = 422
-            throw new Error("Insira o nome do usuário.");
+            throw new Error("Nome do novo usuário não fornecido.");
         }
 
         if (!email) {
             errorCode = 422
-            throw new Error("Insira o e-mail do usuário.");
+            throw new Error("E-mail do novo usuário não fornecido.");
         }
 
-        const searchEmail = await connection("labecommerce_users").where({email})
+        const searchEmail = await connection("labecommerce_users").where('email', email)
         
         if (searchEmail.length > 0) {
             errorCode = 409
@@ -27,7 +27,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         if (!password) {
             errorCode = 422
-            throw new Error("Insira a senha do usuário.");
+            throw new Error("Senha do novo usuário não fornecida.");
         }
 
         const newUser: user = {

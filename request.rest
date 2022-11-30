@@ -18,9 +18,9 @@ POST http://localhost:3003/products
 Content-Type: application/json
 
 {
-    "name": "CD 5 Seconds of Summer - 5SOS5",
-    "price": 35.90,
-    "image_url": "https://m.media-amazon.com/images/I/81Mhruo-6VL._AC_SX679_.jpg"
+    "name": "CD Avril Lavigne - Let Go",
+    "price": 25.9,
+    "image_url": "https://m.media-amazon.com/images/I/710I-xClCiL._AC_SX679_.jpg"
 }
 
 ###
@@ -39,8 +39,8 @@ POST http://localhost:3003/purchases
 Content-Type: application/json
 
 {
-    "user_id": "1669749337942",
-    "product_id": "1669751515032",
+    "userId": "1669751515031",
+    "productId": "1669751515031",
     "quantity": 1
 }
 

@@ -7,6 +7,11 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
     let errorCode = 400
 
     try {
+        if (!name && !price && !image_url) {
+            errorCode = 422
+            throw new Error("Adicione o nome, preço e url da imagem do produto.");
+        }
+        
         if (!name) {
             errorCode = 422
             throw new Error("Adicione o nome do produto");
@@ -26,7 +31,7 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
             id: Date.now().toString(),
             name: name,
             price: price.toFixed(2),
-            image_url: image_url
+            image_url
         }
 
         await connection("labecommerce_products")
