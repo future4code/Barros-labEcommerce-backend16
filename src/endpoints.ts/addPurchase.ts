@@ -1,33 +1,34 @@
 import { Request, Response } from "express";
 import { connection } from "../data/connection";
+import { product } from "../types";
 
 export const addPurchase = async (req: Request, res: Response): Promise<void> => {
-    const {user_id, product_id, quantity} = req.body
+    const {userId, productId, quantity} = req.body
     let errorCode = 400
 
     try {
-        if (!user_id) {
+        if (!userId) {
             errorCode = 422
             throw new Error("ID de usuário não informado.");
         }
 
         const getUser = await connection("labecommerce_users")
-        .where('id', user_id)
+        .where('id', userId)
 
-        if (getUser.length < 0) {
+        if (getUser.length < 1) {
             errorCode = 422
             throw new Error("ID de usuário não encontrado.");
         }
 
-        if (!product_id) {
+        if (!productId) {
             errorCode = 422
             throw new Error("ID de produto não informado.");
         }
 
         const getProduct = await connection("labecommerce_products")
-        .where('id', product_id)
+        .where('id', productId)
 
-        if (getProduct.length < 0) {
+        if (getProduct.length < 1) {
             errorCode = 422
             throw new Error("ID de produto não encontrado.");
         }
@@ -39,7 +40,7 @@ export const addPurchase = async (req: Request, res: Response): Promise<void> =>
 
         const getPrice = await connection("labecommerce_products")
         .select("price")
-        .where('id', product_id)
+        .where('id', productId)
         
         const price = JSON.parse(JSON.stringify(getPrice))
 
@@ -47,8 +48,8 @@ export const addPurchase = async (req: Request, res: Response): Promise<void> =>
 
         const newPurchase = {
             id: Date.now().toString(),
-            user_id,
-            product_id,
+            user_id: userId,
+            product_id: productId,
             quantity,
             total_price: totalPrice
         }
@@ -61,4 +62,4 @@ export const addPurchase = async (req: Request, res: Response): Promise<void> =>
     } catch (error:any) {
         res.status(errorCode).send(error.message)
     }
-} 
+}

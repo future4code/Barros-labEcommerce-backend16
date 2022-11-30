@@ -15,6 +15,7 @@ export type product = {
 
 export type purchases = {
     productName: string,
+    productId: string,
     quantity: number,
     totalPrice: number
 }
