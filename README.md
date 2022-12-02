@@ -9,6 +9,14 @@
 <li> Express </li>
 <li> Knex </li></ul>
 
+<h1>:o: Endpoints </h1>
+<ul><li> Get All Users </li>
+<li> Get All Products </li>
+<li> Get Purchases by User </li>
+<li> Create User </li>
+<li> Create Product </li>
+<li> Add Purchase </li></ul>
+
 <h1>:page_with_curl: Documentação</h1>
 
 https://documenter.getpostman.com/view/22366134/2s8Yt1qp5J
