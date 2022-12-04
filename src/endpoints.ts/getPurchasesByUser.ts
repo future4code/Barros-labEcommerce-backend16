@@ -8,7 +8,7 @@ export const getPurchasesByUser = async (req: Request, res: Response): Promise<v
 
     try {
 
-        if (!userId) {
+        if (!userId || userId === "user_id") {
             errorCode = 422
             throw new Error("ID de usuário não informado.");
         }
